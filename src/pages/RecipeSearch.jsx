@@ -5,6 +5,7 @@ function RecipeSearch() {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [hasSearched, setHasSearched] = useState(false);
 
     async function searchRecipes(query) {
         const res = await fetch(
@@ -28,6 +29,7 @@ function RecipeSearch() {
         if (!query.trim()) return;
 
         setLoading(true)
+        setHasSearched(true)
         try{
             const data = await searchRecipes(query);
             setResults(data);
@@ -50,6 +52,10 @@ function RecipeSearch() {
           />
        
           <button onClick={hanldSearch}>Search</button>
+
+          {hasSearched && !loading && results.length===0 && (
+            <p>No recipes found.</p>
+          )}
 
           <ul
               style={{
