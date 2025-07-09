@@ -35,6 +35,7 @@ function RecipeSearch() {
         try{
             const data = await searchRecipes(query, maxTime);
             setResults(data);
+            console.log(data)
         } catch (error) {
             console.error(error);
             alert("Fetch data failed")
