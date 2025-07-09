@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 function RecipeCard({ recipe }) {
     const navigate = useNavigate();
 
+    const score = recipe.user_ratings?.score
+    ? (recipe.user_ratings.score * 100).toFixed(0) + "%"
+    : "N/A";
+
     return (
         <div onClick={() => navigate(`/recipe/${recipe.id}`)}
             style={{
@@ -28,6 +32,7 @@ function RecipeCard({ recipe }) {
             />
             <h4>{recipe.name}</h4>
             <p>Total Time: {recipe.total_time_minutes} min</p>
+            <p style={{ color: "#888", fontSize: "14px" }}>Rating: {score}</p>
         </div>
     );
 }

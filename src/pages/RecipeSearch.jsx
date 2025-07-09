@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RecipeCard from "../components/RecipeCard";
+import RecommendationSlider from "../components/RecommendationSlider";
 
 function RecipeSearch() {
     const [query, setQuery] = useState("");
@@ -45,6 +46,7 @@ function RecipeSearch() {
 
     return (
         <>
+          <RecommendationSlider />
           <h2>Quick Cook Recipes</h2>
 
           <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
