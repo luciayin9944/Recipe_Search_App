@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import RecipeCard from "./RecipeCard";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -59,17 +58,16 @@ function RecommendationSlider() {
         return () => clearInterval(autoplay);
     }, [recipes]);
 
+
     return (
-        <div>
-            <InnerContent>
-                <Title>🔥 Today's Top Recipe</Title>
-                {recipes.length > 0 && (
-                    <CardContainer>
-                        <SliderCard recipe={recipes[currIndex]} />
-                    </CardContainer>
-                )}
-            </InnerContent>
-        </div>
+        <SliderWrapper>
+            <Title>🔥 Today's Top Recipe</Title>
+            {recipes.length > 0 && (
+                <CardContainer>
+                    <SliderCard recipe={recipes[currIndex]} />
+                </CardContainer>
+            )}
+        </SliderWrapper>
     );
 }
 
@@ -81,7 +79,7 @@ function SliderCard({ recipe }) {
     return (
         <CardContainer onClick={()=> navigate(`/recipe/${recipe.id}`)}>
             <Image src={recipe.thumbnail_url} alt={recipe.name} />
-            <ScoreBadge>{score}</ScoreBadge>
+            <ScoreBadge>🔥{score}</ScoreBadge>
         </CardContainer>
     )
 
@@ -97,14 +95,25 @@ const Container = styled.div`
   align-items: center;
 `;
 
+// const SliderWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 60vh;
+// `;
 
-const InnerContent = styled.div`
+const SliderWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
+  padding: 2rem 1rem;
 `;
 
+
 const Title = styled.h2`
+  display: flex;
   font-size: 2rem;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -119,6 +128,11 @@ const CardContainer = styled.div`
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  &:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.95);
+  }
 `;
 
 const Image = styled.img`

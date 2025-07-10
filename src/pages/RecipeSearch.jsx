@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RecipeCard from "../components/RecipeCard";
 import RecommendationSlider from "../components/RecommendationSlider";
+import styled from "styled-components";
 
 function RecipeSearch() {
     const [query, setQuery] = useState("");
@@ -47,58 +48,113 @@ function RecipeSearch() {
 
     return (
         <>
-          <RecommendationSlider />
-          <h2>Quick Cook Recipes</h2>
+            <RecommendationSlider />
+            <h2>Quick-Cook Recipes</h2>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
-            <label>
+            <SearchBar>
+                <Label>
                 Max Time:
-                <select
-                value={maxTime}
-                onChange={(e)=> setMaxTIme(Number(e.target.value))}
-                style={{ marginLeft: "8px" }}
+                <Select
+                    value={maxTime}
+                    onChange={(e) => setMaxTIme(Number(e.target.value))}
                 >
                     <option value={30}>30 min</option>
                     <option value={20}>20 min</option>
-                    <option value={10}>10 min</option>               
-                </select>
-            </label>
-            <label>
+                    <option value={10}>10 min</option>
+                </Select>
+                </Label>
+
+                <Label>
                 Ingredients:
-                <input
+                <Input
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Enter ingredients"
-                    style={{ marginLeft: "8px" }}
                 />
-            </label>
-        
-            <button onClick={hanldSearch}>Search</button>
-          </div>
+                </Label>
 
-          {hasSearched && !loading && results.length===0 && (
-            <p>No recipes found.</p>
-          )}
+                <Button onClick={hanldSearch}>Search</Button>
+            </SearchBar>
 
-          <ul
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "16px",
-                padding: 0,
-                margin: 0,
-                listStyle: "none",
-              }}
-          >
-            {results.map((r) => (
-              <li key={r.id} style={{ flex: "0 0 220px", margin: "8px" }}>
-                <RecipeCard recipe={r} />
-              </li>
-            )
+            {hasSearched && !loading && results.length === 0 && (
+                <NoResult>No recipes found.</NoResult>
             )}
-          </ul>
-        </>
+
+            <RecipeList>
+                {results.map((r) => (
+                <RecipeItem key={r.id}>
+                    <RecipeCard recipe={r} />
+                </RecipeItem>
+                ))}
+            </RecipeList>
+            </>
     )
 }
+
+
+const SliderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+`;
+
+const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+`;
+
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+`;
+
+const Select = styled.select`
+  padding: 6px;
+  border-radius: 6px;
+`;
+
+const Input = styled.input`
+  padding: 6px;
+  border-radius: 6px;
+`;
+
+const Button = styled.button`
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #005fa3;
+  }
+`;
+
+const RecipeList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+`;
+
+const RecipeItem = styled.li`
+  flex: 0 0 220px;
+  margin: 8px;
+`;
+
+const NoResult = styled.p`
+  text-align: center;
+  color: #666;
+  font-style: italic;
+`;
 
 export default RecipeSearch
