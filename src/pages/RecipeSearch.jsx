@@ -16,8 +16,7 @@ function RecipeSearch() {
             {
                 method: "GET",
                 headers: {
-                    // "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
-                    "X-RapidAPI-Key": "84b98f07f7mshbc8bb01402e0b22p1d9ba3jsn314c322e371f",
+                    "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
                     "X-RapidAPI-Host": "tasty.p.rapidapi.com",
                 },
             }

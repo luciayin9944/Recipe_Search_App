@@ -12,8 +12,8 @@ function RecipePage() {
       {
         method: "GET",
         headers: {
-          // "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
-          "X-RapidAPI-Key": "84b98f07f7mshbc8bb01402e0b22p1d9ba3jsn314c322e371f",
+          "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
+          
           "X-RapidAPI-Host": "tasty.p.rapidapi.com",
         },
       }
@@ -45,14 +45,17 @@ function RecipePage() {
               <p><strong>Serves:</strong> {recipe.num_servings || 'N/A'}</p>
             </MetaRow>
           </Meta>
-
-          <SubHeading>Ingredients</SubHeading>
-          <List>
-            {recipe.sections?.[0]?.components.map((item, index) => (
-              <ListItem key={index}>• {item.raw_text}</ListItem>
-            ))}
-          </List>
+{/* 
+          <IngredientWrapper> */}
+            <SubHeading>Ingredients</SubHeading>
+            <List>
+              {recipe.sections?.[0]?.components.map((item, index) => (
+                <ListItem key={index}>• {item.raw_text}</ListItem>
+              ))}
+            </List>
+          {/* </IngredientWrapper> */}
         </LeftColumn>
+        
 
         <RightColumn>
           <RecipeImage src={recipe.thumbnail_url} alt={recipe.name} />
@@ -74,16 +77,19 @@ function RecipePage() {
       </ContentSection>
 
       <InstructionsSection>
-        <SubHeading>Instructions</SubHeading>
-        <List>
-          {recipe.instructions?.map((instruction, idx) => (
-            <ListItem key={instruction.id}><strong>{idx + 1}. </strong>{instruction.display_text}</ListItem>
-          ))}
-        </List>
+        {/* <InstructionsWrapper> */}
+          <SubHeading>Instructions</SubHeading>
+          <List>
+            {recipe.instructions?.map((instruction, idx) => (
+              <ListItem key={instruction.id}><strong>{idx + 1}. </strong>{instruction.display_text}</ListItem>
+            ))}
+          </List>
+        {/* </InstructionsWrapper> */}
       </InstructionsSection>
     </PageContainer>
   );
 }
+
 
 const PageContainer = styled.div`
   background-color: rgb(21, 52, 96);
@@ -93,6 +99,8 @@ const PageContainer = styled.div`
   font-family: 'Helvetica Neue', sans-serif;
 `;
 
+
+
 const ContentSection = styled.div`
   display: flex;
   justify-content: space-between;
@@ -100,9 +108,37 @@ const ContentSection = styled.div`
   align-items: flex-start;
 `;
 
+
+
+
+const IngredientWrapper = styled.div`
+  border: 0.5px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  min-height: 60vh;
+`;
+
+
+
 const InstructionsSection = styled.div`
   margin-top: 40px;
 `;
+
+
+const InstructionsWrapper = styled.div`
+  border: 0.5px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 8px;
+  width: 90%;
+`;
+
+
 
 const LeftColumn = styled.div`
   flex: 1;
@@ -123,6 +159,8 @@ const RecipeImage = styled.img`
   object-fit: cover;
   margin-bottom: 40px;
 `;
+
+
 
 const NutritionWrapper = styled.div`
   border: 1px solid #ffffff66;
@@ -179,96 +217,8 @@ export default RecipePage;
 
 
 
-
-
-
-
-// import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import styled from "styled-components";
-
-// function RecipePage() {
-//   const [recipe, setRecipe] = useState(null);
-//   const { id } = useParams();
-
-//   async function getRecipeDetail(id) {
-//     const res = await fetch(
-//       `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${id}`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
-//           "X-RapidAPI-Host": "tasty.p.rapidapi.com",
-//         },
-//       }
-//     );
-//     const data = await res.json();
-//     return data;
-//   }
-
-//   useEffect(() => {
-//     getRecipeDetail(id)
-//       .then((data) => setRecipe(data))
-//       .catch((error) => console.error("Failed to load recipe:", error));
-//   }, [id]);
-
-//   if (!recipe) return <p>Loading...</p>;
-
-//   return (
-//     <PageContainer>
-//       <ContentSection>
-//         <LeftColumn>
-//           <Heading>{recipe.name}</Heading>
-//           <Meta>
-//             <MetaRow>
-//               <p><strong>Total Time:</strong> {recipe.total_time_minutes || 'N/A'} min</p>
-//               <p><strong>Prep:</strong> {recipe.prep_time_minutes || 'N/A'} min</p>
-//               <p><strong>Cook:</strong> {recipe.cook_time_minutes || 'N/A'} min</p>
-//             </MetaRow>
-//             <MetaRow>
-//               <p><strong>Serves:</strong> {recipe.num_servings || 'N/A'}</p>
-//             </MetaRow>
-//           </Meta>
-
-//           <SubHeading>Ingredients</SubHeading>
-//           <List>
-//             {recipe.sections?.[0]?.components.map((item, index) => (
-//               <ListItem key={index}>{item.raw_text}</ListItem>
-//             ))}
-//           </List>
-
-//           <SubHeading>Instructions</SubHeading>
-//           <List>
-//             {recipe.instructions?.map((instruction, idx) => (
-//               <ListItem key={instruction.id}><strong>{idx + 1}. </strong>{instruction.display_text}</ListItem>
-//             ))}
-//           </List>
-//         </LeftColumn>
-
-//         <RightColumn>
-//           <RecipeImage src={recipe.thumbnail_url} alt={recipe.name} />
-          
-//           {recipe.nutrition && (
-//             <NutritionWrapper>
-//               <SubHeading>Nutrition Facts</SubHeading>
-//               <List>
-//                 <ListItem>Calories: {recipe.nutrition.calories}</ListItem>
-//                 <ListItem>Carbs: {recipe.nutrition.carbohydrates} g</ListItem>
-//                 <ListItem>Fat: {recipe.nutrition.fat} g</ListItem>
-//                 <ListItem>Protein: {recipe.nutrition.protein} g</ListItem>
-//                 <ListItem>Fiber: {recipe.nutrition.fiber} g</ListItem>
-//                 <ListItem>Sugar: {recipe.nutrition.sugar} g</ListItem>
-//               </List>
-//             </NutritionWrapper>
-//           )}
-//         </RightColumn>
-//       </ContentSection>
-//     </PageContainer>
-//   );
-// }
-
 // const PageContainer = styled.div`
-//   background-color:rgb(21, 52, 96);
+//   background-color: rgb(250, 251, 252);
 //   color: #d1d5db;
 //   padding: 40px;
 //   min-height: 100vh;
@@ -282,7 +232,36 @@ export default RecipePage;
 //   align-items: flex-start;
 // `;
 
-// const LeftColumn= styled.div`
+
+
+// const IngredientWrapper = styled.div`
+//   border: 0.5px solid #ccc;
+//   border-radius: 12px;
+//   background-color: #f9f9f9;
+//   padding: 16px;
+//   border-radius: 8px;
+//   width: 100%;
+//   max-width: 600px;
+//   min-height: 60vh;
+// `;
+
+
+
+// const InstructionsSection = styled.div`
+//   margin-top: 40px;
+// `;
+
+
+// const InstructionsWrapper = styled.div`
+//   border: 0.5px solid #ccc;
+//   border-radius: 12px;
+//   background-color: #f9f9f9;
+//   padding: 16px;
+//   border-radius: 8px;
+//   width: 90%;
+// `;
+
+// const LeftColumn = styled.div`
 //   flex: 1;
 // `;
 
@@ -303,7 +282,9 @@ export default RecipePage;
 // `;
 
 // const NutritionWrapper = styled.div`
-//   border: 1px solid #ffffff66;
+//   border: 0.5px solid #ccc;
+//   border-radius: 12px;
+//   background-color: #f9f9f9;
 //   padding: 16px;
 //   border-radius: 8px;
 //   width: 100%;
@@ -313,7 +294,7 @@ export default RecipePage;
 // const Heading = styled.h1`
 //   font-size: 42px;
 //   margin-bottom: 16px;
-//   color:#ffffff;
+//   color: rgb(21, 52, 96);
 // `;
 
 // const SubHeading = styled.h4`
@@ -337,12 +318,13 @@ export default RecipePage;
 //   }
 // `;
 
-
 // const List = styled.ul`
 //   list-style: none;
 //   padding: 0;
 //   margin-top: 12px;
 // `;
+
+
 
 // const ListItem = styled.li`
 //   margin-bottom: 8px;
@@ -350,6 +332,9 @@ export default RecipePage;
 // `;
 
 // export default RecipePage;
+
+
+
 
 
 

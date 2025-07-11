@@ -19,7 +19,7 @@ function Home() {
         </CardContainer>
 
         {/* Right side */}
-        <CardContainer noPadding>
+        <CardContainer>
           <Image src="/about.jpg" alt="Quick recipe" />
         </CardContainer>
       </Section>
@@ -45,7 +45,6 @@ const Section = styled.section`
   }
 `;
 
-
 const CardContainer = styled.div`
   flex: 1;
   border: 0.5px solid #ccc;
@@ -58,6 +57,19 @@ const CardContainer = styled.div`
   padding: ${(props) => (props.noPadding ? "0" : "40px")};
   overflow: hidden;
 `;
+
+// const CardContainer = styled.div`
+//   flex: 1;
+//   border: 0.5px solid #ccc;
+//   border-radius: 12px;
+//   background-color: #f9f9f9;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   padding: ${(props) => (props.noPadding ? "0" : "40px")};
+//   overflow: hidden;
+// `;
 
 const TextBox = styled.div`
   max-width: 90%;

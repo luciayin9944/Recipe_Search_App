@@ -5,32 +5,29 @@ import { useNavigate } from "react-router-dom";
 async function getTopRecipes() {
     const res = await fetch(
         // `https://tasty.p.rapidapi.com/recipes/list`,
-        `https://tasty.p.rapidapi.com/recipes/list?from=0&size=500`,
+        `https://tasty.p.rapidapi.com/recipes/list?tags=under_30_minutes&from=0&size=5`,
         {
             method: "GET",
             headers: {
-                // "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
-                "X-RapidAPI-Key": "84b98f07f7mshbc8bb01402e0b22p1d9ba3jsn314c322e371f",
+                "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
                 "X-RapidAPI-Host": "tasty.p.rapidapi.com",
             },
         }
     );
     const data = await res.json();
 
-    const filteredData = data.results.filter(
-        (r) =>
-            r.total_time_minutes &&
-            r.total_time_minutes <= 30 &&
-            r.user_ratings &&
-            r.user_ratings.score >= 0.85
-    );
+    // const filteredData = data.results.filter(
+    //     (r) =>
+    //         r.user_ratings &&
+    //         r.user_ratings.score >= 0.85
+    // );
 
-    const topFilteredData = filteredData
-    .sort((a, b) => b.user_ratings.score - a.user_ratings.score)
-    .slice(0, 6);
+    // const topFilteredData = filteredData
+    // .sort((a, b) => b.user_ratings.score - a.user_ratings.score)
+    // .slice(0, 6);
 
-    console.log(topFilteredData)
-    return topFilteredData;
+    console.log(data)
+    return data.results;
 }
 
 function RecommendationSlider() {
