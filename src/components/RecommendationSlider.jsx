@@ -108,8 +108,6 @@ const Title = styled.h2`
 `;
 
 
-
-
 const CardContainer = styled.div`
   position: relative;
   width: 100%;
@@ -126,6 +124,7 @@ const CardContainer = styled.div`
   }
 `;
 
+
 const Image = styled.img`
   width: 100%;
   height: 100%;
@@ -135,7 +134,7 @@ const Image = styled.img`
 
 const ScoreBadge = styled.div`
   position: absolute;
-  top: 12px;
+  bottom: 12px;
   right: 12px;
   background: rgba(255, 255, 255, 0.85);
   color: #222;
