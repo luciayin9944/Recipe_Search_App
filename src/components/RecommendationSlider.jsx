@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 async function getTopRecipes() {
     const res = await fetch(
         // `https://tasty.p.rapidapi.com/recipes/list`,
-        `https://tasty.p.rapidapi.com/recipes/list?tags=under_30_minutes&from=0&size=5`,
+        `https://tasty.p.rapidapi.com/recipes/list?tags=under_30_minutes&from=0&size=6`,
         {
             method: "GET",
             headers: {
@@ -15,6 +15,10 @@ async function getTopRecipes() {
         }
     );
     const data = await res.json();
+
+    const filteredData = data.results.filter(
+        (res) =>  res.total_time_minutes
+    )
 
     // const filteredData = data.results.filter(
     //     (r) =>
@@ -26,8 +30,9 @@ async function getTopRecipes() {
     // .sort((a, b) => b.user_ratings.score - a.user_ratings.score)
     // .slice(0, 6);
 
-    console.log(data)
-    return data.results;
+    console.log(filteredData)
+    return filteredData;
+    
 }
 
 function RecommendationSlider() {
