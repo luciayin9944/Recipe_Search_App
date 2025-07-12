@@ -1,4 +1,4 @@
-import React from "react";
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function Home() {
     <PageContainer>
       <Section>
         {/* left side*/}
-        <CardContainer>
+        <CardContainer style={{ flex: 0.6 }}>
           <TextBox>
             <Title>Find delicious meals you can cook in minutes.</Title>
             <Description>
@@ -20,7 +20,7 @@ function Home() {
 
         {/* Right side */}
         <CardContainer $noPadding>
-          <Image src="/about.jpg" alt="Quick recipe" />
+          <Image src="/about2.jpeg" alt="Quick recipe" />
         </CardContainer>
       </Section>
     </PageContainer>
@@ -37,7 +37,7 @@ const PageContainer= styled.div`
 const Section = styled.section`
   display: flex;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   align-items: stretch;  
   gap: 60px;
 
@@ -48,12 +48,14 @@ const Section = styled.section`
 
 const CardContainer = styled.div`
   flex: 1;
-  border: 0.5px solid #ccc;
+  border: 0.5px solid transparent;
   border-radius: 12px;
-  background-color: #f9f9f9;
+  background-color:rgb(21, 52, 96);
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 40px;
+  max-height: 700px;
 
   padding: ${(props) => (props.$noPadding ? "0" : "40px")};
   overflow: hidden;
@@ -64,38 +66,34 @@ const TextBox = styled.div`
   max-width: 90%;
 `;
 
+
 const Title = styled.h2`
   font-size: 2.2rem;
-  color:rgb(21, 52, 96);
+  color:rgb(237, 237, 237);
   margin-bottom: 20px;
 `;
 
 const Description = styled.p`
-  font-size: 1.2rem;
-  color: #555;
+  font-size: 1rem;
+  color:rgb(159, 161, 164);
+  margin-bottom: 24px;
 `;
 
 
 const StartButton = styled.button`
   padding: 12px 28px;
   border-radius: 6px;
-  background-color: rgb(21, 52, 96);
-  color: white;
+  background-color: rgb(207, 209, 212);
+  color: rgb(21, 52, 96);
   border: none;
   cursor: pointer;
+  margin-top: 24px;
 
   &:hover {
     background-color: rgb(73, 86, 94);
   }
 `;
 
-
-// const Image = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-//   border-radius: 12px;
-// `;
 
 const Image = styled.img`
   width: 100%;
