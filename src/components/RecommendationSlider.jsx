@@ -59,7 +59,7 @@ function RecommendationSlider() {
 
     return (
         <SliderWrapper>
-            <Title>🔥 Today's Top Recipe</Title>
+            <Title>Today's Top Recipe</Title>
             {recipes.length > 0 && (
                 <CardContainer>
                     <SliderCard recipe={recipes[currIndex]} />
@@ -113,9 +113,13 @@ const SliderWrapper = styled.div`
 const Title = styled.h2`
   display: flex;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem;
   text-align: center;
+  color:rgb(21, 52, 96);
 `;
+
+
+
 
 const CardContainer = styled.div`
   position: relative;

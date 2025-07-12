@@ -47,56 +47,68 @@ function RecipeSearch() {
 
 
     return (
-        <>
+        <PageContainer>
             <RecommendationSlider />
-            <h2>Quick-Cook Recipes</h2>
 
-            <SearchBar>
-                <Label>
-                Max Time:
-                <Select
-                    value={maxTime}
-                    onChange={(e) => setMaxTIme(Number(e.target.value))}
-                >
-                    <option value={30}>30 min</option>
-                    <option value={20}>20 min</option>
-                    <option value={10}>10 min</option>
-                </Select>
-                </Label>
+            <SearchSection>
+                <Title>QuickCook Recipes</Title>
+                <SearchBar>
+                    <Label>
+                    Max Time:
+                    <Select
+                        value={maxTime}
+                        onChange={(e) => setMaxTIme(Number(e.target.value))}
+                    >
+                        <option value={30}>30 min</option>
+                        <option value={20}>20 min</option>
+                        <option value={10}>10 min</option>
+                    </Select>
+                    </Label>
 
-                <Label>
-                Ingredients:
-                <Input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Enter ingredients"
-                />
-                </Label>
+                    <Label>
+                    Ingredients:
+                    <Input
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Enter ingredients"
+                    />
+                    </Label>
 
-                <Button onClick={hanldSearch}>Search</Button>
-            </SearchBar>
+                    <Button onClick={hanldSearch}>Search</Button>
+                </SearchBar>
 
-            {hasSearched && !loading && results.length === 0 && (
-                <NoResult>No recipes found.</NoResult>
-            )}
+                {hasSearched && !loading && results.length === 0 && (
+                    <NoResult><strong>No recipes found.</strong></NoResult>
+                )}
 
-            <RecipeList>
-                {results.map((r) => (
-                <RecipeItem key={r.id}>
-                    <RecipeCard recipe={r} />
-                </RecipeItem>
-                ))}
-            </RecipeList>
-            </>
+                <RecipeList>
+                    {results.map((r) => (
+                    <RecipeItem key={r.id}>
+                        <RecipeCard recipe={r} />
+                    </RecipeItem>
+                    ))}
+                </RecipeList>
+            </SearchSection>
+            </PageContainer>
     )
 }
 
 
-const SliderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60vh;
+const PageContainer = styled.div`
+  padding: 60px;
+  font-family: 'Helvetica Neue', sans-serif;
+`;
+
+const Title = styled.h4`
+  font-size: 1.6rem;
+  color:rgb(21, 52, 96);
+  margin-bottom: 20px;
+`;
+
+
+const SearchSection = styled.div`
+  margin-top: 40px;
+  padding-left: 40px; 
 `;
 
 const SearchBar = styled.div`
@@ -127,13 +139,13 @@ const Input = styled.input`
 const Button = styled.button`
   padding: 6px 12px;
   border-radius: 6px;
-  background-color: #0077cc;
+  background-color: rgb(21, 52, 96);
   color: white;
   border: none;
   cursor: pointer;
 
   &:hover {
-    background-color: #005fa3;
+    background-color: rgb(73, 86, 94);
   }
 `;
 
@@ -155,6 +167,7 @@ const NoResult = styled.p`
   text-align: center;
   color: #666;
   font-style: italic;
+  font-size: 2.2rem;
 `;
 
 export default RecipeSearch

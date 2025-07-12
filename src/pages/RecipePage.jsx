@@ -94,11 +94,10 @@ function RecipePage() {
 const PageContainer = styled.div`
   background-color: rgb(21, 52, 96);
   color: #d1d5db;
-  padding: 40px;
+  padding: 80px;
   min-height: 100vh;
   font-family: 'Helvetica Neue', sans-serif;
 `;
-
 
 
 const ContentSection = styled.div`
@@ -107,8 +106,6 @@ const ContentSection = styled.div`
   gap: 40px;
   align-items: flex-start;
 `;
-
-
 
 
 const IngredientWrapper = styled.div`
@@ -139,7 +136,6 @@ const InstructionsWrapper = styled.div`
 `;
 
 
-
 const LeftColumn = styled.div`
   flex: 1;
 `;
@@ -157,9 +153,9 @@ const RecipeImage = styled.img`
   max-height: 400px;
   border-radius: 0 0 100px 0;
   object-fit: cover;
+  margin-top: 40px;
   margin-bottom: 40px;
 `;
-
 
 
 const NutritionWrapper = styled.div`
@@ -176,11 +172,12 @@ const Heading = styled.h1`
   color: #ffffff;
 `;
 
-const SubHeading = styled.h4`
-  margin-top: 32px;
-  font-size: 18px;
+const SubHeading = styled.h3`
+  margin-top: 36px;
+  font-size: 28px;
   border-bottom: 1px solid #fff;
   padding-bottom: 4px;
+  color: #ffffff;
 `;
 
 const Meta = styled.div`
@@ -191,6 +188,7 @@ const MetaRow = styled.div`
   display: flex;
   gap: 24px;
   margin-bottom: 8px;
+  font-size: 20px;
 
   p {
     margin: 0;
@@ -204,7 +202,6 @@ const List = styled.ul`
 `;
 
 
-
 const ListItem = styled.li`
   margin-bottom: 8px;
   line-height: 1.6;
@@ -216,6 +213,8 @@ export default RecipePage;
 
 
 
+
+// White Background Style
 
 // const PageContainer = styled.div`
 //   background-color: rgb(250, 251, 252);
@@ -232,8 +231,6 @@ export default RecipePage;
 //   align-items: flex-start;
 // `;
 
-
-
 // const IngredientWrapper = styled.div`
 //   border: 0.5px solid #ccc;
 //   border-radius: 12px;
@@ -245,12 +242,9 @@ export default RecipePage;
 //   min-height: 60vh;
 // `;
 
-
-
 // const InstructionsSection = styled.div`
 //   margin-top: 40px;
 // `;
-
 
 // const InstructionsWrapper = styled.div`
 //   border: 0.5px solid #ccc;
@@ -323,7 +317,6 @@ export default RecipePage;
 //   padding: 0;
 //   margin-top: 12px;
 // `;
-
 
 
 // const ListItem = styled.li`

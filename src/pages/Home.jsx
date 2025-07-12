@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <PageWrapper>
+    <PageContainer>
       <Section>
         {/* left side*/}
         <CardContainer>
@@ -19,18 +19,19 @@ function Home() {
         </CardContainer>
 
         {/* Right side */}
-        <CardContainer>
+        <CardContainer $noPadding>
           <Image src="/about.jpg" alt="Quick recipe" />
         </CardContainer>
       </Section>
-    </PageWrapper>
+    </PageContainer>
   );
 }
 
-const PageWrapper = styled.div`
+const PageContainer= styled.div`
   display: flex;
   justify-content: center;
   padding: 60px 20px;
+  font-family: 'Helvetica Neue', sans-serif;
 `;
 
 const Section = styled.section`
@@ -38,7 +39,7 @@ const Section = styled.section`
   width: 100%;
   max-width: 1200px;
   align-items: stretch;  
-  gap: 20px;
+  gap: 60px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -54,22 +55,10 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  padding: ${(props) => (props.noPadding ? "0" : "40px")};
+  padding: ${(props) => (props.$noPadding ? "0" : "40px")};
   overflow: hidden;
 `;
 
-// const CardContainer = styled.div`
-//   flex: 1;
-//   border: 0.5px solid #ccc;
-//   border-radius: 12px;
-//   background-color: #f9f9f9;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-
-//   padding: ${(props) => (props.noPadding ? "0" : "40px")};
-//   overflow: hidden;
-// `;
 
 const TextBox = styled.div`
   max-width: 90%;
@@ -86,31 +75,33 @@ const Description = styled.p`
   color: #555;
 `;
 
+
 const StartButton = styled.button`
-  margin-top: 200px;
   padding: 12px 28px;
-  font-size: 1rem;
-  font-weight: bold;
+  border-radius: 6px;
+  background-color: rgb(21, 52, 96);
   color: white;
-  background-color:rgb(21, 52, 96);
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color:rgb(73, 86, 94);
+    background-color: rgb(73, 86, 94);
   }
 `;
 
+
+// const Image = styled.img`
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+//   border-radius: 12px;
+// `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  display: block;
 `;
-
-
 
 export default Home;
