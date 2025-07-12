@@ -105,6 +105,9 @@ const ContentSection = styled.div`
   justify-content: space-between;
   gap: 40px;
   align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;    
+  width: 100%;
 `;
 
 
@@ -123,6 +126,10 @@ const IngredientWrapper = styled.div`
 
 const InstructionsSection = styled.div`
   margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 `;
 
 
@@ -137,7 +144,7 @@ const InstructionsWrapper = styled.div`
 
 
 const LeftColumn = styled.div`
-  flex: 1;
+  flex: 1.5;
 `;
 
 const RightColumn = styled.div`
@@ -149,8 +156,8 @@ const RightColumn = styled.div`
 
 const RecipeImage = styled.img`
   max: 100%;
-  max-width: 300px;
-  max-height: 400px;
+  max-width: 400px;
+  max-height: 600px;
   border-radius: 0 0 100px 0;
   object-fit: cover;
   margin-top: 40px;
@@ -163,12 +170,12 @@ const NutritionWrapper = styled.div`
   padding: 16px;
   border-radius: 8px;
   width: 100%;
-  max-width: 280px;
+  max-width: 380px;
 `;
 
 const Heading = styled.h1`
   font-size: 42px;
-  margin-bottom: 16px;
+  margin-bottom: 36px;
   color: #ffffff;
 `;
 
@@ -187,7 +194,7 @@ const Meta = styled.div`
 const MetaRow = styled.div`
   display: flex;
   gap: 24px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-size: 20px;
 
   p {
